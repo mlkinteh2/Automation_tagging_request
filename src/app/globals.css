@@ -1,0 +1,291 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #173b25;
+  --brand-green-950: #f4faf5;
+  --brand-green-900: #ffffff;
+  --brand-green-800: #e7f5e9;
+  --brand-green-700: #ccebd2;
+  --brand-green-600: #138a3b;
+  --brand-green-500: #1a9b46;
+  --brand-green-deep: #0d7330;
+  --brand-orange-500: #f5a400;
+  --brand-orange-400: #ffba27;
+  --brand-border: rgba(13, 115, 48, 0.26);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(135deg, rgba(22, 141, 60, 0.035), transparent 34%);
+}
+
+/* Bright HiSpeedcity palette applied to the existing operational UI. */
+.brand-sidebar {
+  background: var(--brand-green-600) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+.brand-sidebar .bg-slate-950 { background-color: rgba(7, 92, 36, 0.22) !important; }
+.brand-sidebar .border-slate-800 { border-color: rgba(255, 255, 255, 0.18) !important; }
+.brand-sidebar .text-slate-200,
+.brand-sidebar .text-slate-300,
+.brand-sidebar .text-slate-400 { color: rgba(255, 255, 255, 0.88) !important; }
+.brand-sidebar .text-slate-500,
+.brand-sidebar .text-slate-600 { color: rgba(255, 255, 255, 0.65) !important; }
+.brand-sidebar .text-blue-400 { color: #ffe08a !important; }
+.brand-sidebar .hover\:bg-slate-800:hover { background-color: rgba(7, 92, 36, 0.25) !important; }
+.brand-sidebar .bg-blue-600 { background-color: var(--brand-green-deep) !important; }
+.brand-sidebar .bg-blue-600\/20 { background-color: rgba(7, 92, 36, 0.25) !important; }
+.brand-sidebar .border-blue-500 { border-color: #ffe08a !important; }
+.brand-header {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: var(--brand-border) !important;
+}
+.brand-header .border-slate-800 { border-color: var(--brand-border) !important; }
+.brand-header .hover\:bg-slate-800:hover { background-color: var(--brand-green-800) !important; }
+
+.bg-slate-950 { background-color: var(--brand-green-950) !important; }
+.bg-slate-900 { background-color: var(--brand-green-900) !important; }
+.bg-slate-900\/90 { background-color: rgba(255, 255, 255, 0.96) !important; }
+.bg-slate-800 { background-color: var(--brand-green-800) !important; }
+.bg-slate-700 { background-color: var(--brand-green-700) !important; }
+.bg-blue-600 { background-color: var(--brand-green-600) !important; }
+.bg-blue-500 { background-color: var(--brand-green-500) !important; }
+.hover\:bg-blue-500:hover { background-color: var(--brand-green-500) !important; }
+.hover\:bg-blue-600:hover { background-color: var(--brand-green-600) !important; }
+.text-blue-400 { color: var(--brand-orange-400) !important; }
+.text-blue-500 { color: var(--brand-orange-500) !important; }
+.border-blue-500 { border-color: var(--brand-orange-500) !important; }
+.border-blue-500\/30 { border-color: rgba(245, 164, 0, 0.3) !important; }
+.border-blue-500\/40 { border-color: rgba(245, 164, 0, 0.4) !important; }
+.bg-blue-500\/10 { background-color: rgba(245, 164, 0, 0.1) !important; }
+.bg-blue-500\/20 { background-color: rgba(245, 164, 0, 0.2) !important; }
+.bg-blue-600\/20 { background-color: rgba(245, 164, 0, 0.18) !important; }
+.border-slate-800 { border-color: var(--brand-border) !important; }
+.border-slate-700 { border-color: rgba(22, 141, 60, 0.35) !important; }
+.text-slate-100 { color: #173b25 !important; }
+.text-slate-200 { color: #264b31 !important; }
+.text-slate-300 { color: #41664a !important; }
+.text-slate-400 { color: #64806a !important; }
+.text-slate-500 { color: #78917d !important; }
+.text-slate-600 { color: #8aa18e !important; }
+.hover\:text-slate-200:hover { color: #173b25 !important; }
+.hover\:text-white:hover { color: #ffffff !important; }
+
+/* Give white pages a clear visual hierarchy instead of one flat surface. */
+main > div > .bg-slate-900,
+main > div > .bg-slate-950,
+main > div > div > .bg-slate-900 {
+  box-shadow: 0 8px 24px rgba(13, 115, 48, 0.07);
+}
+main h1,
+main h2,
+main h3 {
+  color: #125c2d !important;
+}
+main .text-3xl,
+main .text-2xl,
+main .text-xl {
+  color: #125c2d !important;
+}
+main .bg-slate-950 .text-slate-100,
+main .bg-slate-950 .text-slate-200 {
+  color: #174b2b !important;
+}
+main .bg-slate-950 {
+  border-color: rgba(13, 115, 48, 0.16) !important;
+}
+main table thead,
+main .bg-slate-950.border-b {
+  background-color: #dff2e2 !important;
+}
+main .hover\:bg-slate-800:hover {
+  background-color: #edf8ef !important;
+}
+
+/* Keep the navigation green after the shared utility remapping above. */
+.brand-sidebar.bg-slate-900 {
+  background: var(--brand-green-600) !important;
+  color: #ffffff !important;
+}
+.brand-sidebar .text-slate-200,
+.brand-sidebar .text-slate-300,
+.brand-sidebar .text-slate-400 { color: rgba(255, 255, 255, 0.9) !important; }
+.brand-sidebar .text-slate-500,
+.brand-sidebar .text-slate-600 { color: rgba(255, 255, 255, 0.68) !important; }
+.brand-sidebar .text-blue-400 { color: #ffe08a !important; }
+.brand-sidebar .hover\:text-slate-200:hover { color: #ffffff !important; }
+.brand-sidebar select,
+.brand-sidebar select.text-slate-200 {
+  color: #173b25 !important;
+  background-color: #ffffff !important;
+}
+.brand-sidebar select option {
+  color: #173b25 !important;
+  background-color: #ffffff !important;
+}
+
+/* High-contrast parking layout states and actions. */
+.layout-status,
+.layout-tag,
+.layout-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+  border-radius: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.025em;
+}
+.layout-status {
+  padding: 0.38rem 0.6rem;
+  border: 1px solid transparent;
+}
+.layout-status-available {
+  color: #ffffff !important;
+  background: #168a3d !important;
+  border-color: #0d7330 !important;
+}
+.layout-status-occupied {
+  color: #ffffff !important;
+  background: #0d7330 !important;
+  border-color: #075b27 !important;
+}
+.layout-status-installation {
+  color: #5b3700 !important;
+  background: #ffd66b !important;
+  border-color: #e6a500 !important;
+}
+.layout-status-removal {
+  color: #713000 !important;
+  background: #ffb347 !important;
+  border-color: #df7612 !important;
+}
+.layout-status-default {
+  color: #365340 !important;
+  background: #dcebe0 !important;
+  border-color: #aac7b0 !important;
+}
+.layout-tag {
+  padding: 0.25rem 0.45rem;
+}
+.layout-tag-installed {
+  color: #0d7330 !important;
+  background: #d9f2df !important;
+}
+.layout-tag-installation {
+  color: #8a5700 !important;
+  background: #fff0bd !important;
+}
+.layout-tag-removal {
+  color: #a04400 !important;
+  background: #ffe0b2 !important;
+}
+.layout-tag-none {
+  color: #6c8271 !important;
+  background: #eef4ef !important;
+}
+.layout-action {
+  min-height: 2rem;
+  padding: 0.4rem 0.7rem;
+  color: #ffffff !important;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 5px rgba(13, 115, 48, 0.12);
+  transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+}
+.layout-action:hover {
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 4px 10px rgba(13, 115, 48, 0.2);
+}
+.layout-action-assign {
+  background: #168a3d !important;
+  border-color: #0d7330 !important;
+}
+.layout-action-replace {
+  background: #1680a0 !important;
+  border-color: #10677f !important;
+}
+.layout-action-transfer {
+  background: #6b4bb5 !important;
+  border-color: #543891 !important;
+}
+.layout-action-cancel {
+  background: #c63d32 !important;
+  border-color: #a42e26 !important;
+}
+.layout-floor-tabs button {
+  color: #4e6d56 !important;
+}
+.layout-floor-tabs button:hover {
+  color: #125c2d !important;
+  background: #eef8f0 !important;
+}
+.layout-floor-tabs button.border-blue-500 {
+  color: #125c2d !important;
+  background: #e0f3e4 !important;
+  border-bottom-color: #168a3d !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--brand-orange-500) !important;
+  box-shadow: 0 0 0 2px rgba(245, 164, 0, 0.12);
+}
+
+::selection {
+  background: var(--brand-orange-500);
+  color: var(--brand-green-950);
+}
+
+@media (max-width: 767px) {
+  .brand-sidebar {
+    display: none !important;
+  }
+
+  .brand-header {
+    height: auto !important;
+    min-height: 4rem;
+    padding: 0.75rem 1rem !important;
+    gap: 0.75rem;
+  }
+
+  .brand-header form {
+    min-width: 0;
+  }
+
+  .brand-header form input {
+    text-overflow: ellipsis;
+  }
+
+  main {
+    padding: 1rem !important;
+  }
+
+  main .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .layout-floor-tabs {
+    overflow-x: auto;
+  }
+
+  .layout-floor-tabs button {
+    min-width: 5.5rem;
+    flex-shrink: 0;
+  }
+}
