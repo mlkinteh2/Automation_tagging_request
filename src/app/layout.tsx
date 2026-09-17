@@ -7,7 +7,7 @@ import { AppShell } from '@/components/layout/AppShell';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'RPSMAS - Reserved Parking & Signboard Management System',
+  title: 'Parking Management Portal | RPSMAS',
   description: 'Automated Reserved Parking Operations and Field Operator Signboard Tag Workflow',
 };
 

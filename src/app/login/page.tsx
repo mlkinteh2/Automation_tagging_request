@@ -49,7 +49,7 @@ export default function LoginPage() {
           </section>
 
           <section className="p-6 sm:p-10">
-            <div className="mb-8"><div className="text-xs font-bold uppercase tracking-[0.18em] text-green-700">RPSMAS workspace</div><h2 className="mt-2 text-3xl font-black text-green-950">Sign in</h2><p className="mt-2 text-sm text-slate-500">Choose your authorized system account to continue.</p></div>
+            <div className="mb-8"><div className="text-xs font-bold uppercase tracking-[0.18em] text-green-700">Parking Management Portal</div><h2 className="mt-2 text-3xl font-black text-green-950">Sign in</h2><p className="mt-2 text-sm text-slate-500">Choose your authorized system account to continue.</p></div>
 
             <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 p-4">
               <div className="flex items-center gap-2 text-green-800">
