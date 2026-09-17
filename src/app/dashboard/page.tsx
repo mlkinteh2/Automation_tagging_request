@@ -35,13 +35,50 @@ interface DashboardData {
     removal: number;
     completedToday: number;
   };
-  urgentBobRequests: any[];
-  recentLogs: any[];
+  urgentBobRequests: DashboardRequestItem[];
+  recentLogs: RecentLogEntry[];
 }
+
+type DashboardRequestItem = {
+  id: string;
+  status: string;
+  request_type: string;
+  request_number: string;
+  created_at: string;
+  completed_at?: string | null;
+  parking_lots?: {
+    floors?: { floor_code?: string } | null;
+    lot_number?: string;
+  } | null;
+  vehicles?: {
+    plate_number?: string;
+  } | null;
+  parking_assignments?: {
+    parkers?: {
+      name?: string;
+      companies?: { name?: string } | null;
+    } | null;
+  } | null;
+};
+
+type RecentLogEntry = {
+  id: string;
+  created_at?: string | null;
+  action?: string | null;
+  description?: string | null;
+  details?: string | null;
+  users?: { name?: string } | null;
+  [key: string]: unknown;
+};
 
 export default function DashboardPage() {
   const { role } = useAuth();
   const isBob = role === 'BOB';
+
+  const getFloorCode = (lot: { floor?: { floor_code?: string } | Array<{ floor_code?: string }> | null }) => {
+    const floorEntry = Array.isArray(lot.floor) ? lot.floor[0] : lot.floor;
+    return floorEntry?.floor_code || 'GF';
+  };
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -92,7 +129,7 @@ export default function DashboardPage() {
           const validLots = lots.filter((lot) => isValidLotNumber(lot.lot_number));
           totalLots = validLots.length;
           validLots.forEach(lot => {
-            const floor = Array.isArray(lot.floor) ? lot.floor[0]?.floor_code || 'GF' : lot.floor?.floor_code || 'GF';
+            const floor = getFloorCode(lot as { floor?: { floor_code?: string } | Array<{ floor_code?: string }> | null });
             if (!floorMap.has(floor)) {
               floorMap.set(floor, { total: 0, occupied: 0, pending: 0, available: 0 });
             }
@@ -122,7 +159,7 @@ export default function DashboardPage() {
         let install = 0;
         let removal = 0;
         let completedToday = 0;
-        const pendingRequests: any[] = [];
+        const pendingRequests: DashboardRequestItem[] = [];
 
         if (bobRequests) {
           const today = new Date();
@@ -160,7 +197,7 @@ export default function DashboardPage() {
     }
 
     fetchData();
-  }, [supabase]);
+  }, []);
 
   if (loading) {
     return (
@@ -444,15 +481,24 @@ export default function DashboardPage() {
           </div>
 
           <div className="space-y-3">
-            {data.recentLogs.map((log) => (
-              <div key={log.id} className="text-xs p-3 bg-slate-950 border border-slate-800/80 rounded-lg">
-                <div className="flex items-center justify-between text-slate-400 mb-1">
-                  <span className="font-semibold text-blue-400">{log.users?.name || 'System'}</span>
-                  <span className="text-[10px] text-slate-500">{formatDistanceToNow(new Date(log.created_at))} ago</span>
+            {data.recentLogs.map((log) => {
+              const logDate = log.created_at ? new Date(log.created_at) : new Date();
+              const logText = typeof log.description === 'string' && log.description
+                ? log.description
+                : typeof log.action === 'string' && log.action
+                  ? log.action
+                  : 'System activity';
+
+              return (
+                <div key={log.id} className="text-xs p-3 bg-slate-950 border border-slate-800/80 rounded-lg">
+                  <div className="flex items-center justify-between text-slate-400 mb-1">
+                    <span className="font-semibold text-blue-400">{log.users?.name || 'System'}</span>
+                    <span className="text-[10px] text-slate-500">{formatDistanceToNow(logDate)} ago</span>
+                  </div>
+                  <div className="text-slate-300 font-medium">{logText}</div>
                 </div>
-                <div className="text-slate-300 font-medium">{log.description || log.action}</div>
-              </div>
-            ))}
+              );
+            })}
             
             {data.recentLogs.length === 0 && (
               <div className="text-sm text-slate-400 py-4 text-center border border-dashed border-slate-700 rounded-lg">
